@@ -1,0 +1,4 @@
+﻿  Practica1.cpp
+C:\Users\burbu\source\repos\PracticasIngenieriaSoftware\Practica1\Practica1.cpp(57,16): warning C4838: la conversión de 'int' en 'SHORT' requiere una conversión de restricción
+C:\Users\burbu\source\repos\PracticasIngenieriaSoftware\Practica1\Practica1.cpp(57,19): warning C4838: la conversión de 'int' en 'SHORT' requiere una conversión de restricción
+  Practica1.vcxproj -> C:\Users\burbu\source\repos\PracticasIngenieriaSoftware\Debug\Practica1.exe
