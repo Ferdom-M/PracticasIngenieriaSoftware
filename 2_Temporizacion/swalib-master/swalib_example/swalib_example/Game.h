@@ -31,8 +31,7 @@ public:
 
 	LARGE_INTEGER frequency;
 	LARGE_INTEGER previousTime, currentTime;
-	double deltaTime = 0, fixedTime = 1.f / 60.f, totalTime = 0, logicTime = 0, secondTime = 0;
-	float updateCount = 0;
+	double deltaTime = 0, fixedTime = 1.f / 60.f, totalTime = 0, logicTime = 0;
 
 	void InitGame();
 	void UpdateGame();

@@ -44,7 +44,7 @@ void RenderLayer::Update(double deltaTime) {
 
 	// Text
 	char buffer[50];
-	sprintf(buffer, "FRAMERATE: %f FPS", m_pGame->updateCount / m_pGame->secondTime);
+	sprintf(buffer, "FRAMERATE: %f FPS", 1 / deltaTime);
 	FONT_DrawString(vec2(0, 16), buffer);
 
 	sprintf(buffer, "FRAMETIME: %f SEC", deltaTime);
@@ -60,5 +60,4 @@ void RenderLayer::Update(double deltaTime) {
 	SYS_Show();
 	SYS_Pump();	// Process Windows messages.
 
-	m_pGame->updateCount++;
 }

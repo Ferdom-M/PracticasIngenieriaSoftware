@@ -18,7 +18,7 @@ void LogicLayer::Update(double deltaTime) {
 
 	QueryPerformanceCounter(&startTime);
 
-	//SYS_Sleep(17);	// To force 60 fps
+	//SYS_Sleep(33);	
 
 	// Run balls
 	for (unsigned int i = 0; i < m_pGame->NUM_BALLS; i++) {
@@ -56,7 +56,8 @@ void LogicLayer::Update(double deltaTime) {
 			m_pGame->tBalls[i].vel.y *= -1.0;
 		}
 
-		QueryPerformanceCounter(&finishedTime);
-		m_pGame->logicTime += (float)(finishedTime.QuadPart - startTime.QuadPart) / m_pGame->frequency.QuadPart;
 	}
+
+	QueryPerformanceCounter(&finishedTime);
+	m_pGame->logicTime += static_cast<float>(finishedTime.QuadPart - startTime.QuadPart) / m_pGame->frequency.QuadPart;
 }
