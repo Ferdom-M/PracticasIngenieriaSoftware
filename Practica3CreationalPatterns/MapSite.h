@@ -10,12 +10,13 @@ enum class EDirection{
 class MapSite
 {
 protected:
-  int m_tNeighbourIds[4];
   const char m_cSprite; 
   int m_iX, m_iY;
 public:
-  MapSite(int* _tNeighbourIds, const char _cSprite, int _iX, int _iY);
+  MapSite(const char _cSprite, int _iX, int _iY);
+  virtual ~MapSite() = default;
   virtual int Enter();
   void Print();
+
 };
 

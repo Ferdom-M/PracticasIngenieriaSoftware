@@ -142,6 +142,7 @@
     <ClCompile Include="consola.cpp" />
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="MapSite.cpp" />
+    <ClCompile Include="Maze.cpp" />
     <ClCompile Include="MazeGame.cpp" />
     <ClCompile Include="Practica3CreationalPatterns.cpp" />
     <ClCompile Include="Room.cpp" />
@@ -151,6 +152,7 @@
     <ClInclude Include="consola.h" />
     <ClInclude Include="Door.h" />
     <ClInclude Include="MapSite.h" />
+    <ClInclude Include="Maze.h" />
     <ClInclude Include="MazeGame.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="Wall.h" />

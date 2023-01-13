@@ -1,6 +1,16 @@
 #include <iostream>
+#include "MazeGame.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
+  MazeGame mazeGame = MazeGame();
+  mazeGame.CreateMaze2ElectricBoogaloo();
+
+  mazeGame.PrintMaze();
+  printf("\n");
+  printf("\n");
+  printf("\n");
+  printf("\n");
+
+  mazeGame.DestroyMaze();
 }

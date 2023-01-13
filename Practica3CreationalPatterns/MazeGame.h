@@ -1,11 +1,13 @@
 #pragma once
-#include "MapSite.h"
+#include "Maze.h"
 class MazeGame
 {
-private:
-  MapSite m_tRooms[9];
-
+private: 
+  Maze* m_pMaze;
 public:
-  void AddRoom(MapSite _newRoom);
+  void CreateMaze();
+  void CreateMaze2ElectricBoogaloo();
+  void PrintMaze();
+  void DestroyMaze();
 };
 
