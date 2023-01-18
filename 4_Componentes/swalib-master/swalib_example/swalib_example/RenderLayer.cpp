@@ -7,7 +7,7 @@
 RenderLayer* RenderLayer::m_Instance = nullptr;
 RenderLayer::RenderLayer(Game* _pGame)
 	: Layer(_pGame)
-	, tRenderableObjects()
+	, m_tRenderableObjects()
 {}
 RenderLayer* RenderLayer::Get(Game* _pGame) {
 	if (m_Instance == nullptr) {
@@ -15,6 +15,14 @@ RenderLayer* RenderLayer::Get(Game* _pGame) {
 	}
 	return m_Instance;
 }
+
+unsigned int RenderLayer::AddRenderableObject(RenderableObject* _pRenderableObject) {
+	m_uNumRenderableObjects++;
+	m_tRenderableObjects.push_back(_pRenderableObject);
+
+	return m_uNumRenderableObjects;
+}
+
 void RenderLayer::Init() {
 
 	FONT_Init();	// Characters and symbols inicialization to draw on screen.
@@ -39,8 +47,8 @@ void RenderLayer::Update(double deltaTime) {
 	// Render
 	glClear(GL_COLOR_BUFFER_BIT);	// Clear color buffer to preset values.
 
-	for (unsigned int i = 0; i < NUM_OBJECTS; i++) {
-		tRenderableObjects[i]->Draw();
+	for (unsigned int i = 0; i < m_tRenderableObjects.size(); i++) {
+		m_tRenderableObjects[i]->Draw();
 	}
 
 	// Text
