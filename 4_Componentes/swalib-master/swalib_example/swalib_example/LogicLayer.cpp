@@ -1,11 +1,14 @@
 #include "LogicLayer.h"
+#include "RenderLayer.h"
 #include "Sprite.h"
 #include "BackgroundSprite.h"
+#include "Ball.h"
 
 LogicLayer* LogicLayer::m_Instance = nullptr;
 
 LogicLayer::LogicLayer(Game* _pGame) 
 	: Layer(_pGame)
+	, tBalls()
 {}
 LogicLayer* LogicLayer::Get(Game* _pGame) {
 	if (m_Instance == nullptr) {
@@ -18,15 +21,17 @@ void LogicLayer::Init() {
 	BackgroundSprite* backgroundSprite = new BackgroundSprite();
 	backgroundSprite->SetGfx(&m_pGame->texbkg);
 	RenderLayer::Get(nullptr)->tRenderableObjects[0] = backgroundSprite;
-
+	float fRadius = 16.f;
 	for (unsigned int i = 1; i < NUM_BALLS + 1; i++) {
-		tBalls[i].SetPos(vec2(CORE_FRand(0.0, SCR_WIDTH), CORE_FRand(0.0, SCR_HEIGHT)));
-		tBalls[i].SetVel(vec2(CORE_FRand(-MAX_BALL_SPEED, +MAX_BALL_SPEED), CORE_FRand(-MAX_BALL_SPEED, +MAX_BALL_SPEED)));
-		tBalls[i].SetRadius(16.f);
+		vec2 vPos = vec2(CORE_FRand(0.0, SCR_WIDTH), CORE_FRand(0.0, SCR_HEIGHT));
+		vec2 vVel = vec2(CORE_FRand(-MAX_BALL_SPEED, +MAX_BALL_SPEED), CORE_FRand(-MAX_BALL_SPEED, +MAX_BALL_SPEED));
+		
+		Ball* ball = new Ball(vPos, fRadius, vVel, NUM_BALLS, i, tBalls);
+		ball->Init();
 
 		Sprite* newBallSprite = new Sprite();
-		newBallSprite->SetPos(tBalls[i].GetPos());
-		newBallSprite->SetSize(vec2(tBalls[i].GetRadius() * 2, tBalls[i].GetRadius() * 2));
+		newBallSprite->SetPos(vPos);
+		newBallSprite->SetSize(vec2(fRadius * 2, fRadius * 2));
 		newBallSprite->SetGfx(&m_pGame->texsmallball);
 		RenderLayer::Get(nullptr)->tRenderableObjects[i] = newBallSprite;
 	}
@@ -34,8 +39,6 @@ void LogicLayer::Init() {
 void LogicLayer::Update(double deltaTime) {
 	// Run balls
 	for (unsigned int i = 0; i < NUM_BALLS; i++) {
-		tBalls[i].Slot(deltaTime, i, NUM_BALLS, tBalls);
-		RenderLayer::Get(nullptr)->tRenderableObjects[i+1]->SetPos(tBalls[i].GetPos());
-		RenderLayer::Get(nullptr)->tRenderableObjects[i + 1]->SetSize(vec2(tBalls[i].GetRadius() * 2, tBalls[i].GetRadius() * 2));
+		tBalls[i]->Slot(deltaTime);
 	}
 }

@@ -1,6 +1,5 @@
 #pragma once
 #include "Layer.h"
-#include "Game.h"
 #include "RenderableObject.h"
 
 class RenderLayer : public Layer

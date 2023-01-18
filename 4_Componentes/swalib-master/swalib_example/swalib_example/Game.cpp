@@ -1,5 +1,7 @@
 #include "Game.h"
-
+#include "Layer.h"
+#include "LogicLayer.h"
+#include "RenderLayer.h"
 
 void Game::InitGame() {
 

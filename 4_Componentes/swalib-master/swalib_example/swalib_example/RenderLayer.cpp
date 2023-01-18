@@ -2,10 +2,12 @@
 #include "BackgroundSprite.h"
 #include <iostream>
 #include <string>
+#include "Game.h"
 
 RenderLayer* RenderLayer::m_Instance = nullptr;
 RenderLayer::RenderLayer(Game* _pGame)
 	: Layer(_pGame)
+	, tRenderableObjects()
 {}
 RenderLayer* RenderLayer::Get(Game* _pGame) {
 	if (m_Instance == nullptr) {

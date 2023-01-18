@@ -1,6 +1,8 @@
 #pragma once
 #include "Game.h"
+#include "Layer.h"
 
+class Ball;
 class LogicLayer : public Layer
 {
 public:
@@ -10,7 +12,7 @@ public:
   virtual void Update(double deltaTime) override;
 
   const unsigned int NUM_BALLS = 10;	// Max. num balls.
-  Ball tBalls[10];	// Array of balls.
+  Ball* tBalls[10];	// Array of balls.
   float MAX_BALL_SPEED = 8.0f;	// Max vel. of ball. (pixels/?).
 private:
 	static LogicLayer* m_Instance;
