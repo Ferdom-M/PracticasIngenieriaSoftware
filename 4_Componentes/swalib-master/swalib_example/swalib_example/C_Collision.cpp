@@ -61,17 +61,21 @@ void C_Collision::Slot(const double _dDeltaTime)
 	{
 		// Rebound!
 		m_pCMovement->InvertVel();
-
 		m_tCMovement[colliding_ball]->InvertVel();
+
+		m_vPos = m_pCMovement->GetPos();
+		m_tCCollision[colliding_ball]->SetPos(m_tCMovement[colliding_ball]->GetPos());
 	}
 
 	// Rebound on margins.
 	if ((m_vPos.x > SCR_WIDTH) || (m_vPos.x < 0))
 	{
 		m_pCMovement->InvertVelX();
+		m_vPos = m_pCMovement->GetPos();
 	}
 	if ((m_vPos.y > SCR_HEIGHT) || (m_vPos.y < 0)) 
 	{
 		m_pCMovement->InvertVelY();
+		m_vPos = m_pCMovement->GetPos();
 	}
 }

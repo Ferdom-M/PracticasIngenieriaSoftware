@@ -26,14 +26,19 @@ void LogicLayer::Init() {
 		vec2 vPos = vec2(CORE_FRand(0.0, SCR_WIDTH), CORE_FRand(0.0, SCR_HEIGHT));
 		vec2 vVel = vec2(CORE_FRand(-MAX_BALL_SPEED, +MAX_BALL_SPEED), CORE_FRand(-MAX_BALL_SPEED, +MAX_BALL_SPEED));
 		
-		Ball* ball = new Ball(vPos, fRadius, vVel, NUM_BALLS, i, tBalls);
-		ball->Init();
+		Ball* ball = new Ball(vPos, fRadius, vVel, NUM_BALLS, i - 1, tBalls);
+		tBalls[i - 1] = ball;
 
 		Sprite* newBallSprite = new Sprite();
 		newBallSprite->SetPos(vPos);
 		newBallSprite->SetSize(vec2(fRadius * 2, fRadius * 2));
 		newBallSprite->SetGfx(&m_pGame->texsmallball);
 		RenderLayer::Get(nullptr)->tRenderableObjects[i] = newBallSprite;
+	}
+
+	// Run balls
+	for (unsigned int i = 0; i < NUM_BALLS; i++) {
+		tBalls[i]->Init();
 	}
 }
 void LogicLayer::Update(double deltaTime) {
