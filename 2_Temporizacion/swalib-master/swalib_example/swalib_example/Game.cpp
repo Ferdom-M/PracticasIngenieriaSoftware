@@ -27,6 +27,7 @@ void Game::UpdateGame() {
       for (Layer* layer : m_tGameLayers) {
         layer->Update(deltaTime);
       }
+      logicTime += fixedTime;
       deltaTime = deltaTime - fixedTime;
       if (deltaTime > 1.f / 15.f) {
         deltaTime = 0;

@@ -127,12 +127,14 @@
     <ClCompile Include="..\..\common\lodepng.cpp" />
     <ClCompile Include="..\..\common\stdafx.cpp" />
     <ClCompile Include="..\..\common\sys_win.cpp" />
+    <ClCompile Include="BackgroundSprite.cpp" />
     <ClCompile Include="Ball.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Layer.cpp" />
     <ClCompile Include="LogicLayer.cpp" />
     <ClCompile Include="RenderableObject.cpp" />
     <ClCompile Include="RenderLayer.cpp" />
+    <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -142,12 +144,14 @@
     <ClInclude Include="..\..\common\stdafx.h" />
     <ClInclude Include="..\..\common\sys.h" />
     <ClInclude Include="..\..\common\vector2d.h" />
+    <ClInclude Include="BackgroundSprite.h" />
     <ClInclude Include="Ball.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Layer.h" />
     <ClInclude Include="LogicLayer.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="RenderLayer.h" />
+    <ClInclude Include="Sprite.h" />
     <ClInclude Include="Timer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

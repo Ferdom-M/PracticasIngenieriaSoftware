@@ -14,10 +14,6 @@ void LogicLayer::Init() {
 	}
 }
 void LogicLayer::Update(double deltaTime) {
-	LARGE_INTEGER startTime, finishedTime;
-
-	QueryPerformanceCounter(&startTime);
-
 	//SYS_Sleep(33);	
 
 	// Run balls
@@ -57,7 +53,4 @@ void LogicLayer::Update(double deltaTime) {
 		}
 
 	}
-
-	QueryPerformanceCounter(&finishedTime);
-	m_pGame->logicTime += static_cast<float>(finishedTime.QuadPart - startTime.QuadPart) / m_pGame->frequency.QuadPart;
 }
