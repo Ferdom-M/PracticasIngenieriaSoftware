@@ -5,7 +5,16 @@ class Entity
 {
 protected: 
   std::list<Component*> m_tComponentList;
+  unsigned int m_uEntityId = -1;
 public:
+  Entity() = default;
+  Entity(unsigned int _uEntityId);
+  ~Entity();
+  bool operator==(const Entity& _pOther);
+  bool operator!=(const Entity& _pOther);
+  
+  unsigned int GetEntityId();
+  void SetEntityId(unsigned int _uEntityId);
   void AddComponent(Component* _pNewComponent);
   
   template<class T>

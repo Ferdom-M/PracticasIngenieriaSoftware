@@ -13,7 +13,7 @@ public:
   virtual void Update(double deltaTime) override;
 
 private:
-  unsigned int m_uNumRenderableObjects = -1;
+  unsigned int m_uNumRenderableObjects = 0;
   static RenderLayer* m_Instance;
   RenderLayer(Game* _pGame);
 };

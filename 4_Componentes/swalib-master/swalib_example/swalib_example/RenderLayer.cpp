@@ -20,7 +20,7 @@ unsigned int RenderLayer::AddRenderableObject(RenderableObject* _pRenderableObje
 	m_uNumRenderableObjects++;
 	m_tRenderableObjects.push_back(_pRenderableObject);
 
-	return m_uNumRenderableObjects;
+	return m_uNumRenderableObjects - 1;
 }
 
 void RenderLayer::Init() {

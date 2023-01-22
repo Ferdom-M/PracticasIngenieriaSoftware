@@ -3,7 +3,7 @@
 #include "../../common/vector2d.h"
 #include "Component.h"
 
-class Ball;
+class World;
 class C_Movement;
 class Entity;
 
@@ -14,13 +14,13 @@ private:
 	vec2 m_vPos;
 	float m_fRadius;
 	unsigned int m_uNumBalls, m_uCurrentBall;
-	Ball** m_tBalls;
+	World* m_pWorld;
 	std::vector<C_Collision*> m_tCCollision;
 	std::vector<C_Movement*> m_tCMovement;
 	C_Movement* m_pCMovement = nullptr;
 
 public:
-	C_Collision(Entity* _pOwner, const vec2& _vPos, float _fRadius, unsigned int _uNumBalls, unsigned int _uCurrentBall, Ball** _tBalls);
+	C_Collision(Entity* _pOwner, const vec2& _vPos, float _fRadius, unsigned int _uNumBalls, unsigned int _uCurrentBall, World* _pWorld);
 	void SetPos(const vec2& _vPos);
 	void SetRadius(const float _fRadius);
 	void SetNumBalls(const unsigned int _uNumBalls);

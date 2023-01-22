@@ -3,15 +3,16 @@
 #include "../../common/sys.h"
 #include "C_Movement.h"
 #include "Component.h"
-#include "Ball.h"
+#include "World.h"
+#include "Entity.h"
 
-C_Collision::C_Collision(Entity* _pOwner, const vec2& _vPos, float _fRadius, unsigned int _uNumBalls, unsigned int _uCurrentBall, Ball** _tBalls)
+C_Collision::C_Collision(Entity* _pOwner, const vec2& _vPos, float _fRadius, unsigned int _uNumBalls, unsigned int _uCurrentBall, World* _pWorld)
 	: Component(_pOwner)
 	, m_vPos(_vPos)
 	, m_fRadius(_fRadius)
 	, m_uNumBalls(_uNumBalls)
 	, m_uCurrentBall(_uCurrentBall)
-	, m_tBalls(_tBalls)
+	, m_pWorld(_pWorld)
 {}
 
 void C_Collision::SetPos(const vec2& _vPos) { m_vPos = _vPos; }
@@ -27,8 +28,8 @@ void C_Collision::Init()
 {
 	for (unsigned int j = 0; j < m_uNumBalls; j++)
 	{
-		m_tCCollision.push_back(m_tBalls[j]->FindComponent<C_Collision>());
-		m_tCMovement.push_back(m_tBalls[j]->FindComponent<C_Movement>());
+		m_tCCollision.push_back(m_pWorld->GetEntity(j)->FindComponent<C_Collision>());
+		m_tCMovement.push_back(m_pWorld->GetEntity(j)->FindComponent<C_Movement>());
 	}
 	m_pCMovement = m_pOwner->FindComponent<C_Movement>();
 }
