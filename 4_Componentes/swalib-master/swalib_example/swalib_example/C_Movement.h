@@ -22,6 +22,7 @@ public:
 	void InvertVelX();
 	void InvertVelY();
 
+	virtual void ReceiveMessage(Message* _pMessage) override;
 	virtual void Init() override;
 	virtual void Slot(double _dDeltaTime) override;
 };

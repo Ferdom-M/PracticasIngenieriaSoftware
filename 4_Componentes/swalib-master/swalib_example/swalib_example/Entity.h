@@ -1,6 +1,7 @@
 #pragma once
 #include <list>
 class Component;
+struct Message;
 class Entity
 {
 protected: 
@@ -30,7 +31,7 @@ public:
     }
     return NULL;
   }
-
+  void SendMessage(Message* _pMessage);
   void Init();
   void Slot(double _dDeltaTime);
 };

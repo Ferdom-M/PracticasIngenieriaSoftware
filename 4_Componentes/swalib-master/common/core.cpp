@@ -167,7 +167,7 @@ GLuint CORE_LoadPNG(const char filename[], bool wrap)
 
   // Blank texture if error
   if(error != 0)
-    return 0;
+      return 0;
     
   // Make image upside down to follow original convention
   std::vector<unsigned char> reversed_image_data;

@@ -11,12 +11,11 @@ class C_Collision :
     public Component
 {
 private:
-	vec2 m_vPos;
+	vec2 m_vPos, m_vLastPos;
 	float m_fRadius;
 	unsigned int m_uNumBalls, m_uCurrentBall;
 	World* m_pWorld;
 	std::vector<C_Collision*> m_tCCollision;
-	std::vector<C_Movement*> m_tCMovement;
 	C_Movement* m_pCMovement = nullptr;
 
 public:
@@ -30,6 +29,11 @@ public:
 	const unsigned int GetNumBalls();
 	const unsigned int GetCurrentBall();
 
+	void SetPreviousPos();
+	void Collide();
+	void CollideMarginX();
+	void CollideMarginY();
+	virtual void ReceiveMessage(Message* _pMessage) override;
 	virtual void Init() override;
   virtual void Slot(const double _dDeltaTime) override;
 };

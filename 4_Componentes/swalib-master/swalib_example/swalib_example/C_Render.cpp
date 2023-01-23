@@ -22,6 +22,9 @@ void C_Render::SetRadius(const float _fRadius) { m_fRadius = _fRadius; }
 void C_Render::SetCurrentBall(const unsigned int _uCurrentBall) { m_uCurrentBall = _uCurrentBall; }
 void C_Render::SetRenderId(const unsigned int _uRenderId) { m_uRenderId = _uRenderId; }
 
+void C_Render::ReceiveMessage(Message* _pMessage)
+{
+}
 void C_Render::Init()
 {
 	m_pCMovement = m_pOwner->FindComponent<C_Movement>();

@@ -21,7 +21,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{CC0EB618-AC99-4DFE-A4E1-534AD384C3A1}</ProjectGuid>
     <RootNamespace>swalib_example</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -129,14 +129,18 @@
     <ClCompile Include="..\..\common\sys_win.cpp" />
     <ClCompile Include="BackgroundSprite.cpp" />
     <ClCompile Include="Ball.cpp" />
+    <ClCompile Include="CollisionMessage.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="C_Collision.cpp" />
     <ClCompile Include="C_Movement.cpp" />
     <ClCompile Include="C_Render.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="EntityCollisionMessage.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Layer.cpp" />
+    <ClCompile Include="LimitWorldCollMessage.cpp" />
     <ClCompile Include="LogicLayer.cpp" />
+    <ClCompile Include="Message.cpp" />
     <ClCompile Include="RenderableObject.cpp" />
     <ClCompile Include="RenderLayer.cpp" />
     <ClCompile Include="Sprite.cpp" />
@@ -152,14 +156,18 @@
     <ClInclude Include="..\..\common\vector2d.h" />
     <ClInclude Include="BackgroundSprite.h" />
     <ClInclude Include="Ball.h" />
+    <ClInclude Include="CollisionMessage.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="C_Collision.h" />
     <ClInclude Include="C_Movement.h" />
     <ClInclude Include="C_Render.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="EntityCollisionMessage.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Layer.h" />
+    <ClInclude Include="LimitWorldCollMessage.h" />
     <ClInclude Include="LogicLayer.h" />
+    <ClInclude Include="Message.h" />
     <ClInclude Include="RenderableObject.h" />
     <ClInclude Include="RenderLayer.h" />
     <ClInclude Include="Sprite.h" />

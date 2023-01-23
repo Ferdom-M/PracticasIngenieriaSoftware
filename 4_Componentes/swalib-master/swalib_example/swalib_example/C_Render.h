@@ -24,6 +24,7 @@ public:
   void SetCurrentBall(unsigned int _uCurrentBall);
   void SetRenderId(unsigned int _uRenderId);
 
+  virtual void ReceiveMessage(Message* _pMessage) override;
   virtual void Init() override;
   virtual void Slot(double _dDeltaTime) override;
 };

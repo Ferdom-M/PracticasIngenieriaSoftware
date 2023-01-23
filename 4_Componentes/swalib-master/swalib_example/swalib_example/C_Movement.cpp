@@ -1,6 +1,9 @@
 #include "C_Movement.h"
 #include "C_Collision.h"
 #include "Entity.h"
+#include "Message.h"
+#include "EntityCollisionMessage.h"
+#include "LimitWorldCollMessage.h"
 
 C_Movement::C_Movement(Entity* _pOwner, vec2 _vPos, vec2 _vVel)
 	: Component(_pOwner)
@@ -17,6 +20,26 @@ void C_Movement::InvertVel() { m_vVel *= -1.f; }
 void C_Movement::InvertVelX() { m_vVel.x *= -1.f; }
 void C_Movement::InvertVelY() { m_vVel.y *= -1.f; }
 
+void C_Movement::ReceiveMessage(Message* _pMessage)
+{
+	EntityCollisionMessage* pEntityCollisionMessage = dynamic_cast<EntityCollisionMessage*>(_pMessage);
+	if (pEntityCollisionMessage) {
+		InvertVel();
+		delete pEntityCollisionMessage;
+	}
+	else
+	{
+		LimitWorldCollMessage* pLimitWorldCollMessage = dynamic_cast<LimitWorldCollMessage*>(_pMessage);
+		if (pLimitWorldCollMessage)
+		{
+			if (pLimitWorldCollMessage->m_bCollX)
+				InvertVelX();
+			else
+				InvertVelY();
+			delete pLimitWorldCollMessage;
+		}
+	}
+}
 void C_Movement::Init()
 {
 	m_pCCollision = m_pOwner->FindComponent<C_Collision>();

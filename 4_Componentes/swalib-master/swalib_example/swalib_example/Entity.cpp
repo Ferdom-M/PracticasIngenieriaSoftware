@@ -28,6 +28,13 @@ void Entity::AddComponent(Component* _pNewComponent)
 {
   m_tComponentList.push_back(_pNewComponent);
 }
+void Entity::SendMessage(Message* _pMessage)
+{
+  for (Component* pComponent : m_tComponentList)
+  {
+    pComponent->ReceiveMessage(_pMessage);
+  }
+}
 void Entity::Init()
 {
   for (Component* component : m_tComponentList)
