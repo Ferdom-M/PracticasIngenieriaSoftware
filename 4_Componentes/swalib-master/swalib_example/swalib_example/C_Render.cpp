@@ -1,8 +1,7 @@
 #include "C_Render.h"
-#include "RenderLayer.h"
-#include "C_Movement.h"
 #include "Entity.h"
-
+#include "GetMovementPosMessage.h"
+#include "RenderLayer.h"
 
 C_Render::C_Render(Entity* _pOwner, const vec2& _vPos, const vec2& _vOffset, float _fRadius, unsigned int _uCurrentBall, unsigned int _uRenderId)
 	: Component(_pOwner)
@@ -26,12 +25,14 @@ void C_Render::ReceiveMessage(Message* _pMessage)
 {
 }
 void C_Render::Init()
-{
-	m_pCMovement = m_pOwner->FindComponent<C_Movement>();
-}
+{}
 void C_Render::Slot(double _dDeltaTime)
 {
-	SetPos(m_pCMovement->GetPos() + m_vOffset);
+	GetMovementPosMessage pMessage = GetMovementPosMessage();
+	// Al parecer SendMessage es una macro de WinUser.h?? No entiendo por qué se llama a la macro si hago m_pOwner pero bueno
+	m_pOwner->SendMessageComponent(&pMessage);
+	SetPos(pMessage.m_vNewPos + m_vOffset);
+
 	RenderLayer::Get(nullptr)->m_tRenderableObjects[m_uRenderId]->SetPos(m_vPos);
 	RenderLayer::Get(nullptr)->m_tRenderableObjects[m_uRenderId]->SetSize(vec2(m_fRadius * 2, m_fRadius * 2));
 }

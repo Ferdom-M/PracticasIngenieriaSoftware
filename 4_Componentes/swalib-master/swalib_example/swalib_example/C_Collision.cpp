@@ -1,12 +1,13 @@
 #include "C_Collision.h"
 #include "../../common/vector2d.h"
 #include "../../common/sys.h"
-#include "C_Movement.h"
-#include "Component.h"
 #include "World.h"
 #include "Entity.h"
 #include "EntityCollisionMessage.h"
 #include "LimitWorldCollMessage.h"
+#include "NewMovementPosMessage.h"
+#include "NewCollisionPosMessage.h"
+#include "GetMovementPosMessage.h"
 
 C_Collision::C_Collision(Entity* _pOwner, const vec2& _vPos, float _fRadius, unsigned int _uNumBalls, unsigned int _uCurrentBall, World* _pWorld)
 	: Component(_pOwner)
@@ -28,25 +29,34 @@ const unsigned int C_Collision::GetCurrentBall() { return m_uCurrentBall; }
 
 void C_Collision::SetPreviousPos() 
 {
-	m_vPos = m_pCMovement->GetPos();
+	GetMovementPosMessage pMessage = GetMovementPosMessage();
+	m_pOwner->SendMessageComponent(&pMessage);
+	m_vPos = pMessage.m_vNewPos;
+
 }
 void C_Collision::Collide()
 {
 	// Rebound!
-	m_pOwner->SendMessage(new EntityCollisionMessage());
+	EntityCollisionMessage pMessage = EntityCollisionMessage();
+	m_pOwner->SendMessageComponent(&pMessage);
 }
 
 void C_Collision::CollideMarginX()
 {
-	m_pOwner->SendMessage(new LimitWorldCollMessage(true));
+	m_pOwner->SendMessageComponent(&LimitWorldCollMessage(true));
 }
 void C_Collision::CollideMarginY() 
 {
-	m_pOwner->SendMessage(new LimitWorldCollMessage(false));
+	m_pOwner->SendMessageComponent(&LimitWorldCollMessage(false));
 }
 void C_Collision::ReceiveMessage(Message* _pMessage)
 {
-
+	NewCollisionPosMessage* pNewCollisionPosMessage = dynamic_cast<NewCollisionPosMessage*>(_pMessage);
+	if (pNewCollisionPosMessage)
+	{
+		m_vPos = pNewCollisionPosMessage->m_vNewPos;
+		return;
+	}
 }
 void C_Collision::Init()
 {
@@ -54,7 +64,6 @@ void C_Collision::Init()
 	{
 		m_tCCollision.push_back(m_pWorld->GetEntity(j)->FindComponent<C_Collision>());
 	}
-	m_pCMovement = m_pOwner->FindComponent<C_Movement>();
 }
 void C_Collision::Slot(const double _dDeltaTime)
 {
@@ -80,15 +89,16 @@ void C_Collision::Slot(const double _dDeltaTime)
 
 	if (!collision)
 	{
-		m_pCMovement->SetPos(m_vPos);
+		m_pOwner->SendMessageComponent(&NewMovementPosMessage(m_vPos));
+
 	}
 	else 
 	{
 		Collide(); 
-		//m_tCCollision[colliding_ball]->Collide();
+		m_tCCollision[colliding_ball]->Collide();
 
 		SetPreviousPos();
-		//m_tCCollision[colliding_ball]->SetPreviousPos();
+		m_tCCollision[colliding_ball]->SetPreviousPos();
 	}
 
 	// Rebound on margins.

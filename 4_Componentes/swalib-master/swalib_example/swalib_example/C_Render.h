@@ -2,7 +2,6 @@
 #include "Component.h"
 #include "../../common/vector2d.h"
 
-class C_Movement;
 class C_Render :
     public Component
 {
@@ -12,7 +11,6 @@ private:
   float m_fRadius;
   unsigned int m_uCurrentBall;
   unsigned int m_uRenderId;;
-  C_Movement* m_pCMovement = nullptr;
 public:
   C_Render(Entity* _pOwner, const vec2& _vPos, const vec2& _vOffset, float _fRadius, unsigned int _uCurrentBall, unsigned int _uRenderId);
   const vec2& GetPos();

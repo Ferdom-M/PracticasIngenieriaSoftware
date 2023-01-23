@@ -31,7 +31,7 @@ public:
     }
     return NULL;
   }
-  void SendMessage(Message* _pMessage);
+  void SendMessageComponent(Message* _pMessage);
   void Init();
   void Slot(double _dDeltaTime);
 };

@@ -2,7 +2,6 @@
 #include "Component.h"
 #include "../../common/vector2d.h"
 
-class C_Collision;
 class Entity;
 class C_Movement :
     public Component
@@ -10,7 +9,7 @@ class C_Movement :
 private:
   vec2   m_vPos;	// Position.
   vec2   m_vVel;	// Velocity.
-	C_Collision* m_pCCollision;
+	//C_Collision* m_pCCollision;
 public:
 	C_Movement(Entity* _pOwner, vec2 _vPos, vec2 _vVel);
 	const vec2 GetPos();

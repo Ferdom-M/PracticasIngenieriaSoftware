@@ -4,8 +4,6 @@
 #include "Component.h"
 
 class World;
-class C_Movement;
-class Entity;
 
 class C_Collision :
     public Component
@@ -16,7 +14,6 @@ private:
 	unsigned int m_uNumBalls, m_uCurrentBall;
 	World* m_pWorld;
 	std::vector<C_Collision*> m_tCCollision;
-	C_Movement* m_pCMovement = nullptr;
 
 public:
 	C_Collision(Entity* _pOwner, const vec2& _vPos, float _fRadius, unsigned int _uNumBalls, unsigned int _uCurrentBall, World* _pWorld);

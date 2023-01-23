@@ -28,7 +28,7 @@ void Entity::AddComponent(Component* _pNewComponent)
 {
   m_tComponentList.push_back(_pNewComponent);
 }
-void Entity::SendMessage(Message* _pMessage)
+void Entity::SendMessageComponent(Message* _pMessage)
 {
   for (Component* pComponent : m_tComponentList)
   {

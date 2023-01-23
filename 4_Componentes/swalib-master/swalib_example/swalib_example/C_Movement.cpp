@@ -1,15 +1,15 @@
 #include "C_Movement.h"
-#include "C_Collision.h"
 #include "Entity.h"
-#include "Message.h"
 #include "EntityCollisionMessage.h"
 #include "LimitWorldCollMessage.h"
+#include "NewMovementPosMessage.h"
+#include "NewCollisionPosMessage.h"
+#include "GetMovementPosMessage.h"
 
 C_Movement::C_Movement(Entity* _pOwner, vec2 _vPos, vec2 _vVel)
 	: Component(_pOwner)
 	, m_vPos(_vPos)
 	, m_vVel(_vVel)
-	, m_pCCollision(nullptr)
 {}
 
 const vec2 C_Movement::GetPos() { return m_vPos; }
@@ -25,29 +25,38 @@ void C_Movement::ReceiveMessage(Message* _pMessage)
 	EntityCollisionMessage* pEntityCollisionMessage = dynamic_cast<EntityCollisionMessage*>(_pMessage);
 	if (pEntityCollisionMessage) {
 		InvertVel();
-		delete pEntityCollisionMessage;
+		return;
 	}
-	else
+	LimitWorldCollMessage* pLimitWorldCollMessage = dynamic_cast<LimitWorldCollMessage*>(_pMessage);
+	if (pLimitWorldCollMessage)
 	{
-		LimitWorldCollMessage* pLimitWorldCollMessage = dynamic_cast<LimitWorldCollMessage*>(_pMessage);
-		if (pLimitWorldCollMessage)
-		{
-			if (pLimitWorldCollMessage->m_bCollX)
-				InvertVelX();
-			else
-				InvertVelY();
-			delete pLimitWorldCollMessage;
-		}
+		if (pLimitWorldCollMessage->m_bCollX)
+			InvertVelX();
+		else
+			InvertVelY();
+		return; 
+	}
+	NewMovementPosMessage* pNewMovementPosMessage = dynamic_cast<NewMovementPosMessage*>(_pMessage);
+	if (pNewMovementPosMessage)
+	{
+		m_vPos = pNewMovementPosMessage->m_vNewPos;
+		return;
+	}
+	GetMovementPosMessage* pGetMovementPosMessage = dynamic_cast<GetMovementPosMessage*>(_pMessage);
+	if (pGetMovementPosMessage)
+	{
+		pGetMovementPosMessage->m_vNewPos = m_vPos;
+		return;
 	}
 }
 void C_Movement::Init()
 {
-	m_pCCollision = m_pOwner->FindComponent<C_Collision>();
 }
 void C_Movement::Slot(double _dDeltaTime)
 {
 	// New Pos.
 	vec2 newpos = m_vPos + m_vVel * 60 * _dDeltaTime;
 
-	m_pCCollision->SetPos(newpos);
+	NewCollisionPosMessage pMessage = NewCollisionPosMessage(newpos);
+	m_pOwner->SendMessageComponent(&pMessage);
 }

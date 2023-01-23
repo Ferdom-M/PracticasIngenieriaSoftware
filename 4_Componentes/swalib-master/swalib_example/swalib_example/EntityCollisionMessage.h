@@ -4,6 +4,5 @@
 struct EntityCollisionMessage :
     public CollisionMessage
 {
-  virtual ~EntityCollisionMessage() override = default;
 };
 

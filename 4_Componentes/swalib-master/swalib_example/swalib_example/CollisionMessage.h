@@ -3,6 +3,5 @@
 struct CollisionMessage :
     public Message
 {
-  virtual ~CollisionMessage() override = default;
 };
 
