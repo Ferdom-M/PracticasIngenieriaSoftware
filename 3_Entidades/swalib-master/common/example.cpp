@@ -3,7 +3,7 @@
 #include "core.h"
 #include "font.h"
 #include "vector2d.h"
-#include "../../Game.h"
+#include "../swalib_example/swalib_example/Game.h"
 
 int Main(void)
 {

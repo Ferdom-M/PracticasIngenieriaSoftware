@@ -1,13 +1,1 @@
-﻿  core.cpp
-  example.cpp
-  font.cpp
-  lodepng.cpp
-  stdafx.cpp
-  sys_win.cpp
-  Game.cpp
-  Layer.cpp
-  LogicLayer.cpp
-C:\Users\burbu\source\repos\PracticasIngenieriaSoftware\2_Temporizacion\swalib-master\swalib_example\swalib_example\LogicLayer.cpp(22,72): warning C4244: 'argumento': conversión de 'double' a 'float'; posible pérdida de datos
-  RenderLayer.cpp
-  Generando código...
-  swalib_example.vcxproj -> C:\Users\burbu\source\repos\PracticasIngenieriaSoftware\2_Temporizacion\swalib-master\swalib_example\Debug\swalib_example.exe
+﻿  swalib_example.vcxproj -> C:\Users\burbu\source\repos\PracticasIngenieriaSoftware\2_Temporizacion\swalib-master\swalib_example\Debug\swalib_example.exe
